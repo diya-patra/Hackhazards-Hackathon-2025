@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Chatbot{% endblock %}
+{% block content %}
+<section>
+    <h2>Chat with AI</h2>
+    <textarea id="userInput" placeholder="Type a message..."></textarea>
+    <button onclick="sendToChatbot()">Send</button>
+    <div id="chatResponse"></div>
+</section>
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

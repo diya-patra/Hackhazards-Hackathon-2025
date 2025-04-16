@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Group Chat{% endblock %}
+{% block content %}
+<section>
+    <h2>Group Chat Room</h2>
+    <input type="text" id="username" placeholder="Your name">
+    <textarea id="groupMessage" placeholder="Type a message..."></textarea>
+    <button onclick="sendGroupMessage()">Send</button>
+    <div id="groupChatBox"></div>
+</section>
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}
