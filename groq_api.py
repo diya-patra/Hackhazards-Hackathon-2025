@@ -10,7 +10,7 @@ def ask_groq(message):
     }
 
     data = {
-        "model": "llama3-8b-8192",  # or other model if needed
+        "model": "llama3-8b-8192",
         "messages": [
             {"role": "user", "content": message}
         ]
