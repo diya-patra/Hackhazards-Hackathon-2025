@@ -1,0 +1,28 @@
+{
+    "private_chats": {
+        "Shihab1": {
+            "Shihab1": []
+        }
+    },
+    "user_ai_chats": {
+        "Shihab1": [
+            {
+                "sender": "Shihab1",
+                "text": "hello"
+            },
+            {
+                "sender": "AI",
+                "text": "Hello! It's nice to meet you. Is there something I can help you with or would you like to chat?"
+            },
+            {
+                "sender": "Shihab1",
+                "text": "how are you"
+            },
+            {
+                "sender": "AI",
+                "text": "I'm just an AI, I don't have feelings or emotions like humans do, so I don't have a personal state or \"being\" in the classical sense. I exist solely to process and generate text based on the inputs I receive. I'm here to help answer your questions, provide information and assist you with your tasks to the best of my abilities. How can I help you today?"
+            }
+        ]
+    },
+    "group_chats": {}
+}

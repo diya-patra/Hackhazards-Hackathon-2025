@@ -54,3 +54,32 @@ button {
     overflow-y: auto;
     border-radius: 5px;
 }
+
+#chatHistoryBox {
+    margin-top: 15px;
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+#chatHistoryBox p {
+    margin: 5px 0;
+}
+
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  
+  .flashes li {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    font-weight: 500;
+  }  

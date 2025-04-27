@@ -13,13 +13,41 @@
             <a href="/chatbot">Chatbot</a>
             <a href="/group">Group Chat</a>
             <a href="/about">About</a>
-        </nav>
+            {% if session.get('user') %}
+            <span style="font-weight: 500; font-size: 1rem; color: #333; background-color: #e0e0e0; padding: 6px 12px; border-radius: 20px;">
+                👤 {{ session['user'] }}
+            </span>                           
+                <a href="/logout" class="btn btn-danger" style="float: right; margin: 10px;">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+                <a href="/signup">Sign Up</a>
+            {% endif %}
+        </nav>        
     </header>
 
     <main>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        
         {% block content %}{% endblock %}
     </main>
 
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</body>
-</html>
+
+    <script>
+      window.addEventListener('load', function() {
+          const chatHistory = document.getElementById('chatHistoryBox');
+          if (chatHistory) {
+              chatHistory.scrollTop = chatHistory.scrollHeight;
+          }
+      });
+    </script>
+    </body>
+    </html>    

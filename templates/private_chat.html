@@ -1,0 +1,201 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Private Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            font-size: 16px;
+        }
+        .messages {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .message {
+            margin-bottom: 10px;
+        }
+        .message.sender {
+            text-align: right;
+            color: green;
+        }
+        .message.receiver {
+            text-align: left;
+            color: blue;
+        }
+        form {
+            display: flex;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Private Chat</h2>
+    <form action="/private_chat" method="post">
+        <label for="receiver">Select User:</label>
+        <select name="receiver" id="receiver" required>
+            {% for user in users %}
+                {% if user != username %}
+                    <option value="{{ user }}" {% if user == selected_user %}selected{% endif %}>{{ user }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+
+        <div class="messages">
+            {% for msg in messages %}
+                <div class="message {{ 'sender' if msg['sender'] == username else 'receiver' }}">
+                    <strong>{{ msg['sender'] }}:</strong> {{ msg['text'] }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <input type="text" name="message" placeholder="Type your message..." required>
+        <button type="submit">Send</button>
+    </form>
+</div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Private Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            font-size: 16px;
+        }
+        .messages {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .message {
+            margin-bottom: 10px;
+        }
+        .message.sender {
+            text-align: right;
+            color: green;
+        }
+        .message.receiver {
+            text-align: left;
+            color: blue;
+        }
+        form {
+            display: flex;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Private Chat</h2>
+    <form action="/private_chat" method="post">
+        <label for="receiver">Select User:</label>
+        <select name="receiver" id="receiver" required>
+            {% for user in users %}
+                {% if user != username %}
+                    <option value="{{ user }}" {% if user == selected_user %}selected{% endif %}>{{ user }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+
+        <div class="messages">
+            {% for msg in messages %}
+                <div class="message {{ 'sender' if msg['sender'] == username else 'receiver' }}">
+                    <strong>{{ msg['sender'] }}:</strong> {{ msg['text'] }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <input type="text" name="message" placeholder="Type your message..." required>
+        <button type="submit">Send</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,55 +1,27 @@
-// ---------- Chatbot ----------
-function sendToChatbot() {
-    const userInput = document.getElementById("userInput").value;
-    if (!userInput) return;
+document.addEventListener("DOMContentLoaded", function () {
+    const messagesDiv = document.getElementById("messages");
+    const group = "{{ group }}";  // This placeholder will not be evaluated here.
+    const groupInput = document.querySelector('input[name="groupname"]');
+    const groupName = groupInput ? groupInput.value : "";
 
-    fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userInput })
-    })
-    .then(res => res.json())
-    .then(data => {
-        const chatBox = document.getElementById("chatResponse");
-        const userDiv = `<p><strong>You:</strong> ${userInput}</p>`;
-        const botDiv = `<p><strong>Bot:</strong> ${data.response}</p>`;
-        chatBox.innerHTML += userDiv + botDiv;
-        document.getElementById("userInput").value = "";
-    });
-}
+    function fetchMessages() {
+        fetch(`/get_messages?groupname=${groupName}`)
+            .then(response => response.json())
+            .then(data => {
+                if (Array.isArray(data.messages)) {
+                    messagesDiv.innerHTML = "";
+                    data.messages.forEach(msg => {
+                        const p = document.createElement("p");
+                        p.innerHTML = `<strong>${msg.sender}:</strong> ${msg.message}`;
+                        messagesDiv.appendChild(p);
+                    });
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                }
+            })
+            .catch(error => console.error("Error fetching messages:", error));
+    }
 
-// ---------- Group Chat ----------
-function sendGroupMessage() {
-    const username = document.getElementById("username").value || "Anonymous";
-    const message = document.getElementById("groupMessage").value;
-    if (!message) return;
-
-    fetch('/api/group_chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, message })
-    })
-    .then(() => {
-        document.getElementById("groupMessage").value = "";
-        loadGroupChat();
-    });
-}
-
-function loadGroupChat() {
-    fetch('/api/group_chat')
-    .then(res => res.json())
-    .then(messages => {
-        const chatBox = document.getElementById("groupChatBox");
-        chatBox.innerHTML = "";
-        messages.forEach(msg => {
-            const entry = `<p><strong>${msg.username}:</strong> ${msg.message}</p>`;
-            chatBox.innerHTML += entry;
-        });
-    });
-}
-
-// Load messages every 2 seconds
-if (window.location.pathname === '/group') {
-    setInterval(loadGroupChat, 2000);
-    window.onload = loadGroupChat;
-}
+    // Fetch messages every 3 seconds
+    setInterval(fetchMessages, 3000);
+    fetchMessages(); // initial load
+});
